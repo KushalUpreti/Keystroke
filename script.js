@@ -47,13 +47,15 @@ function displayText(input) {
         if (val === " ") { val = "&nbsp;" }
         element.innerHTML += "<span>" + val + "</span>";
     }
+    console.log(array.length);
     flicker();
 }
 
 // This function makes the text flicker that indicates which key to press next.
 function flicker() {
+    if (counter == array.length) { return; }
     currentText = document.querySelectorAll("span")[counter + 1];
-    currentText.classList.add("flicker");
+    currentText.classList.toggle("flicker");
 }
 
 // This function is responsible for the keys validation. If the right key is pressed, the cursor moves else the text turns red.
@@ -62,7 +64,7 @@ document.addEventListener('keydown', function(event) {
     if (event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 32 || event.keyCode == 190 || event.keyCode == 188) {
 
         if (event.key !== array[counter]) {
-            currentText.style.color = "red";
+            currentText.classList.add("textColor");
         }
         currentText.classList.toggle("flicker");
         counter++;
@@ -76,7 +78,18 @@ document.addEventListener('keydown', function(event) {
             document.querySelector(searchId).classList.toggle("anim2");
         }, 300)
     }
+    console.log(counter);
+    if (counter == array.length) {
+        reload();
+    }
 });
+
+// This function is used to generate new set of text and also brings up the previous stats.
+function reload() {
+    counter = 0;
+    generateText();
+    currentText.classList.remove("textColor");
+}
 
 // This function is responsible for activating or deactivating the textbox. The timer stops when deactivated
 // and vice versa.

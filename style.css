@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Antic&family=Raleway+Dots&display=swap');
 body {
     text-align: center;
     background-color: #1b262c;
@@ -44,10 +45,43 @@ span {
 .stats {
     color: white;
     width: 50%;
-    height: 10vh;
-    margin: 30px auto 0 auto;
+    margin: 10px auto 0 auto;
     background-color: #182227;
     border-radius: 10px;
+}
+
+.currentStats {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #1a2429;
+    border: 1px;
+    height: 7vh;
+    border-style: ridge;
+    border-color: #182125;
+    margin-top: 3px;
+}
+
+.negativeStats {
+    color: red;
+}
+
+h5 {
+    margin: auto;
+    line-height: 1;
+    font-family: 'Antic', sans-serif;
+}
+
+.returns {
+    color: #d54062;
+}
+
+.statContent {
+    color: #149414;
+    display: flex;
 }
 
 hr {

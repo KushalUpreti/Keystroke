@@ -5,6 +5,56 @@ body {
     background-color: #1b262c;
 }
 
+.settings {
+    position: absolute;
+    top: 14.5vh;
+    right: 20px;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.settings :hover {
+    transform: scale(1.2);
+    opacity: 0.7;
+}
+
+.effect {
+    position: absolute;
+    top: 13.5vh;
+    right: 10px;
+    transition: ease-in-out;
+    background-color: #333f46;
+    width: 17%;
+    height: 83%;
+    opacity: 0.5;
+    border-style: inset;
+    border-width: 1px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.settings_hide {
+    visibility: visible;
+}
+
+.content {
+    position: absolute;
+    transition: 2s ease;
+    z-index: 0;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    right: 0;
+}
+
+.content_expand {
+    width: 350%;
+    height: 150%;
+    transform: translate(50%, -10%);
+    background-color: #8d8888;
+}
+
 .textContent {
     font-family: 'Roboto', sans-serif;
     color: white;

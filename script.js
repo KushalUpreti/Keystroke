@@ -159,9 +159,28 @@ function activate() {
     active = !active;
 }
 
+function settings() {
+    document.querySelector(".effect").classList.toggle("settings_hide");
+    document.querySelector(".content").classList.toggle("content_expand");
+}
+
+
+function setListeners() {
+    var setting = document.querySelector(".settings");
+    setting.addEventListener("click", settings);
+    setting.addEventListener("mouseenter", function() {
+        setting.style.transform = "scale(1.1)";
+    });
+    setting.addEventListener("mouseleave", function() {
+        setting.style.transform = "scale(1)";
+    });
+}
+
+
 // This is the function that gets called as soon as the page loads. Responsible for website initiation.
 document.addEventListener('DOMContentLoaded', function() {
     generateText();
+    setListeners();
     document.getElementsByClassName("textContent")[0].addEventListener('click', activate);
     document.querySelector(".info").classList.remove("infoDisable");
     document.querySelector(".textContent").classList.add("deactive");

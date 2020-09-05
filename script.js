@@ -1,19 +1,19 @@
-var array = null;
-var currentText = null;
-var active = false;
-var easy = true;
-var counter = 0;
-var letterCount = 0;
-var totalWords = 0;
-var totalErrors = 0;
-var time = 0;
-var topSpeed = 0;
-var maxSpeed = 0;
+let array = null;
+let currentText = null;
+let active = false;
+let easy = true;
+let counter = 0;
+let letterCount = 0;
+let totalWords = 0;
+let totalErrors = 0;
+let time = 0;
+let topSpeed = 0;
+let maxSpeed = 0;
 
-var averageArray = [];
+let averageArray = [];
 
 
-setInterval(function() {
+setInterval(function () {
     if (active) {
         time++;
     }
@@ -21,9 +21,9 @@ setInterval(function() {
 
 // This function generates random text everytime the page is refreshed or the old set of words are completed.
 function generateText() {
-    var easyText = ["a", "s", "d", "w", "r", "t", "h", "j", "n", "m", "i", "o", "v", "e", "f"];
-    var hardText = ["g", "h", "z", "x", "c", "b", "k", "y", "q", "p", "u", "n", "m", "v", "l"];
-    var string = "";
+    let easyText = ["a", "s", "d", "w", "r", "t", "h", "j", "n", "m", "i", "o", "v", "e", "f"];
+    let hardText = ["g", "h", "z", "x", "c", "b", "k", "y", "q", "p", "u", "n", "m", "v", "l"];
+    let string = "";
     letterCount = 0;
     while (true) {
         if (easy) {
@@ -38,15 +38,46 @@ function generateText() {
     displayText(string);
 }
 
+function customText() {
+    let text = document.querySelector("textarea").value;
+    console.log(text);
+    let parsedText = validateText(text);
+    if (parsedText != null) {
+        reload();
+        displayText(parsedText);
+    }
+}
+
+
+function validateText(text) {
+    if (text.length === 0) {
+        return null;
+    }
+    let firstTextDraft = text.trim();
+    if (firstTextDraft.length > 130) {
+        firstTextDraft = firstTextDraft.slice(0, 130);
+    }
+
+    let secondTextDraft = firstTextDraft.toLowerCase();
+    for (let i = 0; i < secondTextDraft.length; i++) {
+        let code = secondTextDraft.charCodeAt(i);
+
+        if ((code < 97 || code > 122) && (code != 46 && code != 44 && code != 32)) {
+            secondTextDraft = secondTextDraft.replace(secondTextDraft.charAt(i), "");
+        }
+    }
+    return secondTextDraft;
+}
+
 // This function is responsible for generating words. The words can be one to six letters long.
 function createWords(array, string) {
-    var wordLength = Math.ceil(Math.random() * 6);
+    let wordLength = Math.ceil(Math.random() * 6);
     if (letterCount > 0) {
         string = string + " ";
         totalWords++;
     }
-    for (var i = 0; i < wordLength; i++) {
-        var character = Math.floor(Math.random() * 15);
+    for (let i = 0; i < wordLength; i++) {
+        let character = Math.floor(Math.random() * 15);
         string += array[character];
         letterCount++;
     }
@@ -56,11 +87,11 @@ function createWords(array, string) {
 // This function is responsible for displaying text to the screen. It takes the text generated above and converts it into a span.
 function displayText(input) {
 
-    var element = document.querySelector("p");
+    let element = document.querySelector("p");
     array = input.split("");
     element.textContent = "";
     for (let i = 0; i < array.length; i++) {
-        var val = array[i];
+        let val = array[i];
         if (val === " ") { val = "&nbsp;" }
         element.innerHTML += "<span>" + val + "</span>";
     }
@@ -75,7 +106,7 @@ function flicker() {
 }
 
 // This function is responsible for the keys validation. If the right key is pressed, the cursor moves else the text turns red.
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (!active) { return; }
     if (event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 32 || event.keyCode == 190 || event.keyCode == 188) {
 
@@ -86,12 +117,12 @@ document.addEventListener('keydown', function(event) {
         currentText.classList.toggle("flicker");
         counter++;
         flicker();
-        var searchId = "#" + event.key;
+        let searchId = "#" + event.key;
         if (event.keyCode == 32) {
             searchId = "#" + "Space";
         }
         document.querySelector(searchId).classList.add("anim2");
-        setTimeout(function() {
+        setTimeout(function () {
             document.querySelector(searchId).classList.toggle("anim2");
         }, 300)
     }
@@ -109,13 +140,13 @@ function reload() {
     totalWords = 0;
     totalErrors = 0;
 
-
     generateText();
 }
 
 function calculateScore(time, totalWords) {
-    var wpm = Math.floor(totalWords / (time / 60));
-    var totalScore = ((1200 - (totalErrors * 10)) + wpm * 2);
+
+    let wpm = Math.floor(totalWords / (time / 60));
+    let totalScore = ((1200 - (totalErrors * 10)) + wpm * 2);
 
     // The code below adds the new top wpm to the page.
     let gain = document.querySelector("#speedGain");
@@ -126,11 +157,11 @@ function calculateScore(time, totalWords) {
 
     //Code below calculates the score increment or decrement from the previous one
     if (wpm > maxSpeed) {
-        var speedGain = wpm - maxSpeed;
+        let speedGain = wpm - maxSpeed;
         gain.innerHTML = speedGain + "<br>Wpm+";
         gain.classList.remove("negativeStats");
     } else {
-        var speedGain = maxSpeed - wpm;
+        let speedGain = maxSpeed - wpm;
         gain.classList.add("negativeStats");
         gain.innerHTML = speedGain + "<br>Wpm-";
     }
@@ -139,11 +170,10 @@ function calculateScore(time, totalWords) {
     // The code below produces the average score from all the attempts.
     let len = averageArray.push(totalScore);
     let sum = 0;
-    averageArray.forEach(function(item) {
+    averageArray.forEach(function (item) {
         sum = sum + item;
     });
     let finalaverage = Math.ceil(sum / len);
-
 
     document.querySelector("#points").innerHTML = totalScore + "<br>points";
     document.querySelector("#wpm").innerHTML = wpm + "<br>Wpm";
@@ -166,22 +196,24 @@ function settings() {
 
 
 function setListeners() {
-    var setting = document.querySelector(".settings");
+    let setting = document.querySelector(".settings");
     setting.addEventListener("click", settings);
-    setting.addEventListener("mouseenter", function() {
+    setting.addEventListener("mouseenter", function () {
         setting.style.transform = "scale(1.1)";
     });
-    setting.addEventListener("mouseleave", function() {
+    setting.addEventListener("mouseleave", function () {
         setting.style.transform = "scale(1)";
     });
+    document.getElementsByClassName("textContent")[0].addEventListener('click', activate);
+    document.querySelector(".btn").addEventListener('click', customText);
 }
 
 
 // This is the function that gets called as soon as the page loads. Responsible for website initiation.
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     generateText();
     setListeners();
-    document.getElementsByClassName("textContent")[0].addEventListener('click', activate);
+
     document.querySelector(".info").classList.remove("infoDisable");
     document.querySelector(".textContent").classList.add("deactive");
 });

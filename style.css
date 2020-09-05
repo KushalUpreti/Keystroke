@@ -1,199 +1,218 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Antic&family=Raleway+Dots&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Antic&family=Raleway+Dots&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap");
 body {
-    text-align: center;
-    background-color: #1b262c;
+  text-align: center;
+  background-color: #1b262c;
 }
 
 .settings {
-    position: absolute;
-    top: 14.5vh;
-    right: 20px;
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-    z-index: 1;
+  position: absolute;
+  top: 14.5vh;
+  right: 20px;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .settings :hover {
-    transform: scale(1.2);
-    opacity: 0.7;
+  transform: scale(1.2);
+  opacity: 0.7;
 }
 
 .effect {
-    position: absolute;
-    top: 13.5vh;
-    right: 10px;
-    transition: ease-in-out;
-    background-color: #333f46;
-    width: 17%;
-    height: 83%;
-    opacity: 0.5;
-    border-style: inset;
-    border-width: 1px;
-    overflow: hidden;
-    visibility: hidden;
+  position: absolute;
+  top: 13.5vh;
+  right: 10px;
+  transition: ease-in-out;
+  background-color: #333f46;
+  width: 17%;
+  height: 83%;
+  opacity: 0.9;
+  border-style: inset;
+  border-width: 1px;
+  overflow: hidden;
+  visibility: hidden;
 }
 
 .settings_hide {
-    visibility: visible;
+  visibility: visible;
 }
 
 .content {
-    position: absolute;
-    transition: 2s ease;
-    z-index: 0;
-    border-radius: 50%;
-    width: 0;
-    height: 0;
-    right: 0;
+  position: absolute;
+  transition: 2s ease;
+  z-index: 0;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  right: 0;
 }
 
 .content_expand {
-    width: 350%;
-    height: 150%;
-    transform: translate(50%, -10%);
-    background-color: #8d8888;
+  width: 350%;
+  height: 150%;
+  transform: translate(50%, -10%);
+  background-color: #8d8888;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+h4 {
+  margin-top: 20%;
+  color: white;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 20px;
+}
+
+textarea {
+  margin-top: 5%;
+}
+
+button {
+  margin-left: 65%;
 }
 
 .textContent {
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    padding: 30px;
-    width: 60%;
-    height: 20vh;
-    background-color: #182227;
-    margin: 30px auto 0 auto;
-    border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  padding: 30px;
+  width: 60%;
+  height: 20vh;
+  background-color: #182227;
+  margin: 30px auto 0 auto;
+  border-radius: 10px;
 }
 
 .deactive {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 .info {
-    margin: auto;
-    color: white;
-    padding-top: 10px;
-    transition: 0.7s ease;
+  margin: auto;
+  color: white;
+  padding-top: 10px;
+  transition: 0.7s ease;
 }
 
 .infoDisable {
-    font-size: 0;
+  font-size: 0;
 }
 
 .textColor {
-    color: red;
+  color: red;
 }
 
 span {
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    display: inline-block;
-    font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
 }
 
 .stats {
-    color: white;
-    width: 50%;
-    margin: 10px auto 0 auto;
-    background-color: #182227;
-    border-radius: 10px;
+  color: white;
+  width: 50%;
+  margin: 10px auto 0 auto;
+  background-color: #182227;
+  border-radius: 10px;
 }
 
 .currentStats {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    background-color: #1a2429;
-    border: 1px;
-    height: 7vh;
-    border-style: ridge;
-    border-color: #182125;
-    margin-top: 3px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #1a2429;
+  border: 1px;
+  height: 7vh;
+  border-style: ridge;
+  border-color: #182125;
+  margin-top: 3px;
 }
 
 .negativeStats {
-    color: red;
+  color: red;
 }
 
 h5 {
-    margin: auto;
-    line-height: 1;
-    font-family: 'Antic', sans-serif;
+  margin: auto;
+  line-height: 1;
+  font-family: "Antic", sans-serif;
 }
 
 .returns {
-    color: #d54062;
+  color: #d54062;
 }
 
 .statContent {
-    color: #149414;
-    display: flex;
+  color: #149414;
+  display: flex;
 }
 
 hr {
-    margin-top: 20px;
-    border-color: rgba(131, 125, 125, 0.575);
-    border-style: solid;
+  margin-top: 20px;
+  border-color: rgba(131, 125, 125, 0.575);
+  border-style: solid;
 }
 
 .keyboard {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .qwerty {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 #Space {
-    width: 20%;
+  width: 20%;
 }
 
 .anim p {
-    margin-top: 10px;
-    margin-bottom: auto;
-    color: white;
+  margin-top: 10px;
+  margin-bottom: auto;
+  color: white;
 }
 
 .anim {
-    height: 50px;
-    background-color: #747070;
-    width: 5%;
-    text-align: center;
-    border: 1px;
-    border-style: solid;
+  height: 50px;
+  background-color: #747070;
+  width: 5%;
+  text-align: center;
+  border: 1px;
+  border-style: solid;
 }
 
 @keyframes animation {
-    50% {
-        background-color: red;
-    }
-    100% {
-        background-color: #747070;
-    }
+  50% {
+    background-color: red;
+  }
+  100% {
+    background-color: #747070;
+  }
 }
 
 .anim2 {
-    animation-name: animation;
-    animation-duration: 0.3s;
-    animation-iteration-count: 1;
+  animation-name: animation;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
 }
 
 .flicker {
-    animation-name: flicker;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
+  animation-name: flicker;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }
 
 @keyframes flicker {
-    50% {
-        background-color: white;
-        opacity: 0.5;
-    }
-    100% {}
+  50% {
+    background-color: white;
+    opacity: 0.5;
+  }
+  100% {
+  }
 }

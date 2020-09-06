@@ -42,6 +42,8 @@ function customText() {
     let text = document.querySelector("textarea").value;
     let parsedText = validateText(text);
     if (parsedText != null) {
+        counter = 0;
+        time = 0;
         displayText(parsedText);
     }
 }
@@ -136,12 +138,13 @@ document.addEventListener('keydown', function (event) {
 function reload() {
     counter = 0;
     calculateScore(time, totalWords);
+
     currentText.classList.remove("textColor");
     time = 0;
     totalWords = 0;
     totalErrors = 0;
-
     generateText();
+
 }
 
 function calculateScore(time, totalWords) {

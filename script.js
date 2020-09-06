@@ -40,15 +40,13 @@ function generateText() {
 
 function customText() {
     let text = document.querySelector("textarea").value;
-    console.log(text);
     let parsedText = validateText(text);
     if (parsedText != null) {
-        reload();
         displayText(parsedText);
     }
 }
 
-
+// This function is responsible for cleaning the user input text and returning the clean text.
 function validateText(text) {
     if (text.length === 0) {
         return null;
@@ -59,11 +57,14 @@ function validateText(text) {
     }
 
     let secondTextDraft = firstTextDraft.toLowerCase();
+
     for (let i = 0; i < secondTextDraft.length; i++) {
         let code = secondTextDraft.charCodeAt(i);
 
         if ((code < 97 || code > 122) && (code != 46 && code != 44 && code != 32)) {
+            console.log(secondTextDraft.charAt(i) + " " + code);
             secondTextDraft = secondTextDraft.replace(secondTextDraft.charAt(i), "");
+            i--;
         }
     }
     return secondTextDraft;

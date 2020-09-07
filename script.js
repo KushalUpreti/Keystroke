@@ -9,7 +9,7 @@ let totalErrors = 0;
 let time = 0;
 let topSpeed = 0;
 let maxSpeed = 0;
-let textLength = 120;
+var textLength = 120;
 let playSound = false;
 
 let averageArray = [];
@@ -18,26 +18,30 @@ let averageArray = [];
 setInterval(function () {
     if (active) {
         time++;
-        console.log(time);
     }
 }, 1000);
 
 // This function generates random text everytime the page is refreshed or the old set of words are completed.
 function generateText() {
+    console.log(textLength);
     let easyText = ["a", "s", "d", "w", "r", "t", "h", "j", "n", "m", "i", "o", "v", "e", "f"];
     let hardText = ["g", "h", "z", "x", "c", "b", "k", "y", "q", "p", "u", "n", "m", "v", "l"];
     let string = "";
     letterCount = 0;
     while (true) {
+        if (letterCount > textLength) {
+            break;
+        }
         if (easy) {
             string = createWords(easyText, string);
         } else {
             string = createWords(hardText, string);
         }
-        if (letterCount > textLength) {
-            break;
-        }
     }
+    if (string.length > textLength) {
+        string = string.slice(0, textLength);
+    }
+
     displayText(string);
 }
 
@@ -52,7 +56,6 @@ function customText() {
 
 // This function is responsible for cleaning the user input text and returning the clean text.
 function validateText(text) {
-
 
     if (text.length === 0) {
         return null;
@@ -246,13 +249,11 @@ function setListeners() {
 
     document.querySelector(".slider").addEventListener('input', (e) => {
         textLength = Number(e.target.value);
+        console.log(textLength);
         setInitials();
         generateText();
     });
 }
-
-
-
 
 // This is the function that gets called as soon as the page loads. Responsible for website initiation.
 document.addEventListener('DOMContentLoaded', function () {

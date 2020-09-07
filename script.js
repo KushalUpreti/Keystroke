@@ -9,6 +9,8 @@ let totalErrors = 0;
 let time = 0;
 let topSpeed = 0;
 let maxSpeed = 0;
+let textLength = 120;
+let playSound = false;
 
 let averageArray = [];
 
@@ -16,6 +18,7 @@ let averageArray = [];
 setInterval(function () {
     if (active) {
         time++;
+        console.log(time);
     }
 }, 1000);
 
@@ -31,7 +34,7 @@ function generateText() {
         } else {
             string = createWords(hardText, string);
         }
-        if (letterCount > 120) {
+        if (letterCount > textLength) {
             break;
         }
     }
@@ -42,21 +45,19 @@ function customText() {
     let text = document.querySelector("textarea").value;
     let parsedText = validateText(text);
     if (parsedText != null) {
-        counter = 0;
-        time = 0;
+        setInitials;
         displayText(parsedText);
     }
 }
 
 // This function is responsible for cleaning the user input text and returning the clean text.
 function validateText(text) {
+
+
     if (text.length === 0) {
         return null;
     }
     let firstTextDraft = text.trim();
-    if (firstTextDraft.length > 130) {
-        firstTextDraft = firstTextDraft.slice(0, 130);
-    }
 
     let secondTextDraft = firstTextDraft.toLowerCase();
 
@@ -69,6 +70,10 @@ function validateText(text) {
             i--;
         }
     }
+    if (secondTextDraft.length > 200) {
+        secondTextDraft = secondTextDraft.slice(0, 200);
+    }
+
     return secondTextDraft;
 }
 
@@ -110,8 +115,13 @@ function flicker() {
 
 // This function is responsible for the keys validation. If the right key is pressed, the cursor moves else the text turns red.
 document.addEventListener('keydown', function (event) {
+    let audio = new Audio("sound.mp3");
+
     if (!active) { return; }
     if (event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 32 || event.keyCode == 190 || event.keyCode == 188) {
+        if (playSound) {
+            audio.play();
+        }
 
         if (event.key !== array[counter]) {
             currentText.classList.add("textColor");
@@ -145,6 +155,11 @@ function reload() {
     totalErrors = 0;
     generateText();
 
+}
+
+function setInitials() {
+    counter = 0;
+    time = 0;
 }
 
 function calculateScore(time, totalWords) {
@@ -210,7 +225,33 @@ function setListeners() {
     });
     document.getElementsByClassName("textContent")[0].addEventListener('click', activate);
     document.querySelector(".btn").addEventListener('click', customText);
+
+    document.querySelector(".radioForm").addEventListener('change', (e) => {
+        if (e.target.id === "Easy") {
+            easy = true;
+        } else {
+            easy = false;
+        }
+        setInitials();
+        generateText();
+    });
+
+    document.querySelector(".audioForm").addEventListener('change', (e) => {
+        if (e.target.id === "Yes") {
+            playSound = true;
+        } else {
+            playSound = false;
+        }
+    });
+
+    document.querySelector(".slider").addEventListener('input', (e) => {
+        textLength = Number(e.target.value);
+        setInitials();
+        generateText();
+    });
 }
+
+
 
 
 // This is the function that gets called as soon as the page loads. Responsible for website initiation.

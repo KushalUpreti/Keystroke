@@ -216,3 +216,40 @@ hr {
   100% {
   }
 }
+
+input[type="radio"] {
+  transform: scale(1.5);
+}
+
+label {
+  color: white;
+}
+
+.radioTags {
+  margin-bottom: 4px;
+}
+
+.difficulty {
+  font-family: "IBM Plex Sans", sans-serif;
+  margin-top: 8px;
+  color: white;
+  font-size: 24px;
+}
+
+.length {
+  font-family: "IBM Plex Sans", sans-serif;
+  margin-top: 5px;
+  color: white;
+  font-size: 24px;
+}
+
+.settingsHr {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .effect {
+    width: 20%;
+  }
+}

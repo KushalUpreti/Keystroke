@@ -38,9 +38,10 @@
       </div>
     </nav>
     <img class="settings" src="setting.png" alt="img" />
+
     <div class="effect">
       <div class="content"></div>
-      <h4>Input your custom text. (110-130 characters )</h4>
+      <h4>Input your custom text. (200 characters max)</h4>
       <textarea
         name="text"
         placeholder="Your text here.."
@@ -49,7 +50,76 @@
         rows="5"
       ></textarea>
       <button class="btn btn-danger">Ok</button>
+
+      <hr class="settingsHr" />
+
+      <h3 class="difficulty">Difficulty Level</h3>
+
+      <form class="radioForm">
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="Easy"
+            value="option1"
+          />
+          <label class="form-check-label" for="inlineRadio1"
+            ><h6 class="radioTags">&nbsp;&nbsp;Easy</h6></label
+          >
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="Hard"
+            value="option2"
+          />
+          <label class="form-check-label" for="inlineRadio2"
+            ><h6 class="radioTags">&nbsp;&nbsp;Hard</h6></label
+          >
+        </div>
+      </form>
+      <hr class="settingsHr" />
+      <h3 class="length">Text length</h3>
+      <label>110</label>
+      <input class="slider" type="range" min="100" max="150" value="120" />
+      <label>150</label>
+      <hr class="settingsHr" />
+
+      <h3 class="difficulty">Play Audio?</h3>
+
+      <form class="audioForm">
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="Yes"
+            value="option1"
+          />
+          <label class="form-check-label" for="inlineRadio1"
+            ><h6 class="radioTags">&nbsp;&nbsp;Yes</h6></label
+          >
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="No"
+            value="option2"
+          />
+          <label class="form-check-label" for="inlineRadio2"
+            ><h6 class="radioTags">&nbsp;&nbsp;No</h6></label
+          >
+        </div>
+      </form>
     </div>
+
     <div id="text" class="textContent">
       <p></p>
     </div>

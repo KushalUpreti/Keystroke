@@ -14,7 +14,7 @@ let playSound = false;
 
 let averageArray = [];
 
-
+// This is the timer that is responsible for tracking the total time taken.
 setInterval(function () {
     if (active) {
         time++;
@@ -45,11 +45,12 @@ function generateText() {
     displayText(string);
 }
 
+// This function handles the custom text input feature
 function customText() {
     let text = document.querySelector("textarea").value;
     let parsedText = validateText(text);
     if (parsedText != null) {
-        setInitials;
+        setInitials();
         displayText(parsedText);
     }
 }
@@ -160,11 +161,13 @@ function reload() {
 
 }
 
+// This function resets the value of counter and time
 function setInitials() {
     counter = 0;
     time = 0;
 }
 
+// As the name suggests, this function is used to calculate and display all the stats.
 function calculateScore(time, totalWords) {
 
     let wpm = Math.floor(totalWords / (time / 60));
@@ -211,12 +214,14 @@ function activate() {
     active = !active;
 }
 
+// This function is used to display or hide the settings panel.
 function settings() {
     document.querySelector(".effect").classList.toggle("settings_hide");
     document.querySelector(".content").classList.toggle("content_expand");
 }
 
 
+// This function sets listeners for all the necessary html elements
 function setListeners() {
     let setting = document.querySelector(".settings");
     setting.addEventListener("click", settings);
